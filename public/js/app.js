@@ -1843,19 +1843,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       questions: _Collections__WEBPACK_IMPORTED_MODULE_0__["default"],
       show: 0,
-      relationship: '',
-      length: '',
-      socialmedia: '',
-      personal: '',
-      username: '',
-      partnerusername: '',
-      share: ''
+      relationship: "",
+      length: "",
+      socialmedia: "",
+      personal: "",
+      username: "",
+      partnerusername: "",
+      share: ""
     };
   },
   computed: {
@@ -1872,14 +1920,14 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       console.log(this.username, this.socialmedia, this.relationship, this.length, this.personal, this.partnerusername, this.share);
       var form = new FormData();
-      form.append('username', this.username);
-      form.append('socialmedia', this.socialmedia);
-      form.append('relationship', this.relationship);
-      form.append('length', this.length);
-      form.append('personal', this.personal);
-      form.append('partnerusername', this.partnerusername);
-      form.append('share', this.share);
-      axios.post('/submit', form).then(function (response) {
+      form.append("username", this.username);
+      form.append("socialmedia", this.socialmedia);
+      form.append("relationship", this.relationship);
+      form.append("length", this.length);
+      form.append("personal", this.personal);
+      form.append("partnerusername", this.partnerusername);
+      form.append("share", this.share);
+      axios.post("/submit", form).then(function (response) {
         return console.log(response);
       }).catch(function (error) {
         return console.log(error);
@@ -36780,10 +36828,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "page__container" }, [
     _c(
       "form",
       {
+        staticClass: "form",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -36793,81 +36842,48 @@ var render = function() {
       },
       [
         _vm.show === 0
-          ? _c("p", [
-              _vm._v("\n            Your Username\n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.username,
-                    expression: "username"
-                  }
-                ],
-                attrs: {
-                  type: "text",
-                  name: "username",
-                  placeholder: "Username"
-                },
-                domProps: { value: _vm.username },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.username = $event.target.value
-                  }
-                }
-              }),
+          ? _c("div", { staticClass: "page__content" }, [
+              _c("p", { staticClass: "page__title mg-b--lg" }, [
+                _vm._v("What’s your claim?")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "question2" },
+                _vm._l(_vm.questions, function(question, key) {
+                  return _c("div", [
+                    _c("label", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.relationship,
+                            expression: "relationship"
+                          }
+                        ],
+                        attrs: { type: "radio", name: _vm.relationship },
+                        domProps: {
+                          value: key,
+                          checked: _vm._q(_vm.relationship, key)
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.relationship = key
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", [_vm._v(_vm._s(key))])
+                    ])
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.socialmedia,
-                    expression: "socialmedia"
-                  }
-                ],
-                attrs: {
-                  type: "radio",
-                  name: _vm.socialmedia,
-                  value: "Twitter"
-                },
-                domProps: { checked: _vm._q(_vm.socialmedia, "Twitter") },
-                on: {
-                  change: function($event) {
-                    _vm.socialmedia = "Twitter"
-                  }
-                }
-              }),
-              _vm._v("Twitter\n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.socialmedia,
-                    expression: "socialmedia"
-                  }
-                ],
-                attrs: {
-                  type: "radio",
-                  name: _vm.socialmedia,
-                  value: "Instagram"
-                },
-                domProps: { checked: _vm._q(_vm.socialmedia, "Instagram") },
-                on: {
-                  change: function($event) {
-                    _vm.socialmedia = "Instagram"
-                  }
-                }
-              }),
-              _vm._v("Instagram\n            "),
-              _c("br"),
-              _vm._v(" "),
-              _vm.socialmedia != "" && _vm.username != ""
+              _vm.relationship != ""
                 ? _c(
                     "button",
                     {
@@ -36884,60 +36900,6 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _vm.show === 1
-          ? _c(
-              "p",
-              [
-                _vm._v(
-                  "\n            What is your relationship?\n            "
-                ),
-                _vm._l(_vm.questions, function(question, key) {
-                  return _c("span", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.relationship,
-                          expression: "relationship"
-                        }
-                      ],
-                      attrs: { type: "radio", name: _vm.relationship },
-                      domProps: {
-                        value: key,
-                        checked: _vm._q(_vm.relationship, key)
-                      },
-                      on: {
-                        change: function($event) {
-                          _vm.relationship = key
-                        }
-                      }
-                    }),
-                    _vm._v(" " + _vm._s(key) + "\n            ")
-                  ])
-                }),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _vm.relationship != ""
-                  ? _c(
-                      "button",
-                      {
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.next()
-                          }
-                        }
-                      },
-                      [_vm._v("Next")]
-                    )
-                  : _vm._e()
-              ],
-              2
-            )
-          : _vm._e(),
-        _vm._v(" "),
         _vm.show === 2 && _vm.relationship != ""
           ? _c(
               "p",
@@ -36947,9 +36909,9 @@ var render = function() {
                     i == 0
                       ? _c("span", [
                           _vm._v(
-                            "\n                    " +
+                            "\n          " +
                               _vm._s(_vm.questions[_vm.relationship][0][i]) +
-                              "\n                    "
+                              "\n          "
                           )
                         ])
                       : _c("span", [
@@ -36973,7 +36935,7 @@ var render = function() {
                               }
                             }
                           }),
-                          _vm._v(" " + _vm._s(option) + "\n                ")
+                          _vm._v("\n          " + _vm._s(option) + "\n        ")
                         ])
                   ])
                 }),
@@ -37008,9 +36970,9 @@ var render = function() {
                     i == 0
                       ? _c("span", [
                           _vm._v(
-                            "\n                    " +
+                            "\n          " +
                               _vm._s(_vm.questions[_vm.relationship][1][i]) +
-                              "\n                    "
+                              "\n          "
                           )
                         ])
                       : _c("span", [
@@ -37034,7 +36996,7 @@ var render = function() {
                               }
                             }
                           }),
-                          _vm._v(" " + _vm._s(option) + "\n                ")
+                          _vm._v("\n          " + _vm._s(option) + "\n        ")
                         ])
                   ])
                 }),
@@ -37062,7 +37024,7 @@ var render = function() {
         _vm._v(" "),
         _vm.show === 4
           ? _c("p", [
-              _vm._v("\n            Partner Username\n            "),
+              _vm._v("\n      Partner Username\n      "),
               _c("input", {
                 directives: [
                   {
@@ -37110,25 +37072,25 @@ var render = function() {
         _vm.show === 5
           ? _c("p", [
               _c("span", { staticStyle: { border: "1px solid grey" } }, [
-                _vm._v(" \n                    Your result"),
+                _vm._v("Your result\n        "),
                 _c("br"),
                 _vm._v(
-                  "\n                    Your partner is " +
+                  "\n        Your partner is " +
                     _vm._s(_vm.partnerusername) +
                     " and your relationship is " +
                     _vm._s(_vm.relationship) +
-                    " "
+                    "\n        "
                 ),
                 _c("br"),
                 _vm._v(
-                  "\n                    You have been together for " +
+                  "\n        You have been together for " +
                     _vm._s(_vm.length) +
-                    " "
+                    "\n        "
                 ),
                 _c("br")
               ]),
               _vm._v(" "),
-              _vm._v("\n            \n            Share\n            "),
+              _vm._v("\n      Share\n      "),
               _c("input", {
                 directives: [
                   {
@@ -37146,7 +37108,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v("Yes\n            "),
+              _vm._v("Yes\n      "),
               _c("input", {
                 directives: [
                   {
@@ -37164,7 +37126,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v("No\n            "),
+              _vm._v("No\n      "),
               _vm.share != ""
                 ? _c(
                     "button",
@@ -48843,8 +48805,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\knowyourboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\knowyourboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/mac/Documents/project/Astractprojects/knowyourboo/knowyourboo/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/mac/Documents/project/Astractprojects/knowyourboo/knowyourboo/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

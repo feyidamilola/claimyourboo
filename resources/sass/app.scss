@@ -1,14 +1,180 @@
-
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Questrial");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
+//reset
+p {
+    margin: 0;
+    padding: 0;
+}
+.page {
+    // background-color: red;
+    height: 100vh;
+    font-family: "Questrial", sans-serif;
+    background-image: url("../img/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    &__nav {
+        height: 60px;
+        // border: 1px solid blue;
+        display: flex;
+        padding: 0 2em;
+        justify-content: space-between;
+        align-items: center;
+        & > div:nth-child(2) {
+            display: flex;
+            color: white;
+            justify-content: space-between;
+            width: 150px;
+            // border: 1px solid green;
+            align-items: center;
+        }
+    }
+    &__container {
+        // display: grid;
+        position: relative;
+        border: 1px solid blue;
+        height: calc(100vh - 60px);
+        // flex-wrap: wrap;
+    }
+    &__content {
+        max-width: 770px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        transform: translateY(-50%);
+    }
+    &__title {
+        font-size: 35px;
+        color: white;
+        &--lg {
+            font-size: 70px;
+            line-height: 75px;
+        }
+    }
+    &__subtitle {
+        font-size: 25px;
+        color: white;
+        font-style: normal;
+        font-weight: 400;
+    }
+    &__media {
+        display: flex;
+        margin: 0 auto;
+        max-width: 200px;
+        justify-content: space-around;
+        margin-top: 15px;
+    }
+}
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+//Forms
+
+.form {
+    // position: relative;
+    width: 100%;
+    &__field {
+        -webkit-appearance: none;
+        outline: none;
+        border: 0;
+        color: #bfbfbf;
+        // padding: 10px;
+        text-align: right;
+        background-color: transparent;
+        padding: 13px 0px;
+        // padding-right: 0;
+        &::placeholder {
+            color: #bfbfbf;
+        }
+    }
+}
+label.input {
+    display: flex;
+    width: 80%;
+    margin: 20px auto;
+    align-items: center;
+    background-color: white;
+    font-size: 19px;
+    padding: 0 15px;
+    border-radius: 5px;
+    color: #cecece;
+    border: 1px solid white;
+    box-shadow: 0 30px 35px 0 rgba(65, 8, 8, 0.15);
+    background-image: linear-gradient(82deg, #ffffff, #edd9d9);
+    span {
+        width: 5%;
+    }
+    input {
+        width: 95%;
+    }
+}
+
+.media-radio {
+    position: relative;
+    input {
+        opacity: 0;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+    input:checked {
+        & ~ span {
+            opacity: 1;
+            // transform: scale(1.5);
+            transition: 0.3s all;
+        }
+        & ~ i {
+            box-shadow: 0 35px 30px 0 rgba(77, 6, 6, 0.25);
+        }
+    }
+
+    & > span {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        opacity: 0;
+        i {
+            font-size: 10px;
+            color: white;
+            padding: 2px;
+            background-color: #17eb68;
+            border-radius: 50%;
+        }
+    }
+    i {
+        padding: 26px;
+        font-size: 26px;
+        border-radius: 5px;
+        box-shadow: 0 20px 25px 0 rgba(77, 6, 6, 0.18);
+        color: white;
+        &.fa-twitter {
+            background-color: #51abf1;
+        }
+        &.fa-instagram {
+            background-color: #c537a4;
+        }
+    }
+}
+
+.question2 {
+    display: flex;
+    flex-grow: 1;
+    & > div {
+        // height: 300px;
+        width: 33%;
+        border: 1px solid green;
+    }
+}
+//Assets
+
+.mg-b {
+    margin-bottom: 15px;
+    &--lg {
+        margin-bottom: 35px;
+    }
 }
