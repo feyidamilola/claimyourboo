@@ -12,8 +12,7 @@ p {
     padding: 0;
 }
 .page {
-    // background-color: red;
-    height: 100vh;
+    min-height: 100vh;
     font-family: "Questrial", sans-serif;
     background-image: url("../img/bg.png");
     background-size: cover;
@@ -38,17 +37,17 @@ p {
         // display: grid;
         position: relative;
         border: 1px solid blue;
-        height: calc(100vh - 60px);
+        // height: calc(100vh - 60px);
         // flex-wrap: wrap;
     }
     &__content {
         max-width: 770px;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
+        // position: absolute;
+        // top: 50%;
+        // left: 0;
+        // right: 0;
         margin: 0 auto;
-        transform: translateY(-50%);
+        // transform: translateY(-50%);
         text-align: center;
     }
     &__title {
@@ -171,6 +170,45 @@ label.input {
         border: 1px solid green;
     }
 }
+
+// Steppers
+.steppers {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    // max-width: 900px;
+    margin: 30px auto 0;
+    position: relative;
+    max-width: 1000px;
+    border: 1px solid orange;
+    .step {
+        border: 1px solid green;
+        position: relative;
+        width: 15%;
+        &:not(:last-child)::after {
+            content: "";
+            // display: block;
+            // position: absolute;
+            // top: 0;
+            // right: 0;
+            // left: 0;
+            // margin: auto;
+            // right: -50%;
+            // width: 70px;
+            // border-top: 2px solid blue;
+            // top: 50%;
+        }
+        span {
+            font-size: 20px;
+            color: white;
+        }
+        p {
+            font-size: 30px;
+            color: white;
+        }
+    }
+}
+
 //Assets
 
 .mg-b {

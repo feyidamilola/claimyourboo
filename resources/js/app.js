@@ -9,6 +9,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -23,6 +27,7 @@ window.Vue = require('vue');
 Vue.component('Username', require('./components/Username.vue').default);
 Vue.component('Claims', require('./components/Claims.vue').default);
 Vue.component('Navbar', require('./components/Navbar.vue').default);
+Vue.component('stepper', require('./components/Stepper.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

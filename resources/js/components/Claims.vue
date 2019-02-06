@@ -105,12 +105,16 @@
         <input v-model="share" type="radio" :name="share" value="No">No
         <button v-if="share != ''" v-on:click="submit()" type="submit">Submit</button>
       </p>
+
+      <stepper></stepper>
     </form>
   </div>
 </template>
 
 <script>
 import Question from "../Collections";
+// import Steppers from "./Stepper";
+
 export default {
   data() {
     return {

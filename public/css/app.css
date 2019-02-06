@@ -4,7 +4,7 @@
 }
 
 .page {
-  height: 100vh;
+  min-height: 100vh;
   font-family: "Questrial", sans-serif;
   background-image: url("../img/bg.png");
   background-size: cover;
@@ -27,17 +27,10 @@
 .page__container {
   position: relative;
   border: 1px solid blue;
-  height: calc(100vh - 60px);
 }
 .page__content {
   max-width: 770px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
   margin: 0 auto;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
   text-align: center;
 }
 .page__title {
@@ -158,6 +151,32 @@ label.input input {
 .question2 > div {
   width: 33%;
   border: 1px solid green;
+}
+
+.steppers {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 30px auto 0;
+  position: relative;
+  max-width: 1000px;
+  border: 1px solid orange;
+}
+.steppers .step {
+  border: 1px solid green;
+  position: relative;
+  width: 15%;
+}
+.steppers .step:not(:last-child)::after {
+  content: "";
+}
+.steppers .step span {
+  font-size: 20px;
+  color: white;
+}
+.steppers .step p {
+  font-size: 30px;
+  color: white;
 }
 
 .mg-b {
