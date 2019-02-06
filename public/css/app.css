@@ -38,6 +38,7 @@
   margin: 0 auto;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  text-align: center;
 }
 .page__title {
   font-size: 35px;

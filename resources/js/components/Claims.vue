@@ -1,7 +1,7 @@
 <template >
   <div class="page__container">
     <form @submit.prevent="submit" class="form">
-      <div v-if="show === 0" >
+      <div v-if="show === 0" class="page__content">
         <p class="page__title page__title--lg mg-b--lg">
           Is your boo really
           your boo?
@@ -41,6 +41,7 @@
         <br>
         <button v-if="socialmedia != '' && username!= ''" v-on:click="next()" type="button">Next</button>
       </div>
+
       <div v-if="show === 1" class="page__content">
         <p class="page__title mg-b--lg">What’s your claim?</p>
 
@@ -56,28 +57,11 @@
         <button v-if="relationship != ''" v-on:click="next()" type="button">Next</button>
       </div>
 
-      <p v-if="show === 2 && relationship != ''">
-        <span v-for="(option , i) in questions[relationship][0]">
-          <span v-if="i == 0">
-            {{ questions[relationship][0][i]}}
-            <!-- {{option}} -->
-          </span>
-          <span v-else>
-            <input type="radio" :value="option" v-model="length">
-            {{option}}
-          </span>
-        </span>
-        <br>
-        <button v-if="relationship != '' && length != '' " v-on:click="next()" type="button">Next</button>
-      </p>
-
       <p v-if="show === 3 && length != ''">
         <span v-for="(option , i) in questions[relationship][1]">
-          <!-- <input v-model="relationship" type="radio" :name="relationship" :value="key"/> {{key}} -->
-          <span v-if="i == 0">
-            {{ questions[relationship][1][i]}}
-            <!-- {{option}} -->
-          </span>
+          <input v-model="relationship" type="radio" :name="relationship" :value="key">
+          {{key}}
+          <span v-if="i == 0">{{ questions[relationship][1][i]}}</span>
           <span v-else>
             <input type="radio" :value="option" v-model="personal">
             {{option}}
