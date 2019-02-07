@@ -3,12 +3,27 @@
   padding: 0;
 }
 
+body {
+  background-size: cover !important;
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.8;
+  background-color: #e9304d;
+}
+
 .page {
   min-height: 100vh;
   font-family: "Questrial", sans-serif;
-  background-image: url("../img/bg.png");
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
+  z-index: 222;
 }
 .page__nav {
   height: 60px;
@@ -25,8 +40,10 @@
   align-items: center;
 }
 .page__container {
+  display: flex;
   position: relative;
-  border: 1px solid blue;
+  min-height: calc(100vh - 60px);
+  align-items: center;
 }
 .page__content {
   max-width: 770px;
@@ -160,22 +177,33 @@ label.input input {
   margin: 30px auto 0;
   position: relative;
   max-width: 1000px;
-  border: 1px solid orange;
+  align-items: center;
+}
+.steppers .line {
+  border: 2px solid white;
+  height: 2px;
+  width: 130px;
 }
 .steppers .step {
-  border: 1px solid green;
+  border: 1px solid white;
   position: relative;
-  width: 15%;
-}
-.steppers .step:not(:last-child)::after {
-  content: "";
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
 }
 .steppers .step span {
-  font-size: 20px;
+  font-size: 15px;
   color: white;
 }
 .steppers .step p {
-  font-size: 30px;
+  font-size: 20px;
+  color: white;
+}
+
+.next {
+  margin-top: 20px;
   color: white;
 }
 
@@ -184,4 +212,50 @@ label.input input {
 }
 .mg-b--lg {
   margin-bottom: 35px;
+}
+
+.about {
+  min-height: 100vh;
+  background-color: white;
+  opacity: 0.9;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 222;
+}
+.about span {
+  font-size: 26px;
+  position: absolute;
+  right: 45px;
+  top: 45px;
+  cursor: pointer;
+}
+.about div {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  top: 30%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.opacity-0 {
+  opacity: 0;
+  z-index: -1;
+}
+
+#about-click {
+  cursor: pointer;
 }

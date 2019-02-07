@@ -57,7 +57,23 @@
         <button v-if="relationship != ''" v-on:click="next()" type="button">Next</button>
       </div>
 
-      <p v-if="show === 3 && length != ''">
+      <p v-if="show === 2 && relationship != ''" class="page__content">
+        <span v-for="(option , i) in questions[relationship][0]">
+          <!-- <input v-model="relationship" type="radio" :name="relationship" :value="key"/> {{key}} -->
+          <span v-if="i == 0">
+            {{ questions[relationship][0][i]}}
+            <!-- {{option}} -->
+          </span>
+          <span v-else>
+            <input type="radio" :value="option" v-model="length">
+            {{option}}
+          </span>
+        </span>
+        <br>
+        <button v-if="relationship != '' && length != '' " v-on:click="next()" type="button">Next</button>
+      </p>
+
+      <p v-if="show === 3 && length != ''" class="page__content">
         <span v-for="(option , i) in questions[relationship][1]">
           <input v-model="relationship" type="radio" :name="relationship" :value="key">
           {{key}}
@@ -71,21 +87,47 @@
         <button v-if="relationship != '' && personal != '' " v-on:click="next()" type="button">Next</button>
       </p>
 
-      <p v-if="show === 4">
-        Partner Username
-        <input
-          type="text"
-          name="partnerusername"
-          placeholder="Partner Username"
-          v-model="partnerusername"
-        >
-        <br>
+      <div v-if="show === 4" class="page__content">
+        <p class="page__title mg-b--lg">Who be this person sef?</p>
+        <div>
+          <label class="input">
+            <span>@</span>
+            <input
+              type="text"
+              name="partnerusername"
+              placeholder="enter your handle"
+              v-model="partnerusername"
+              class="form__field"
+            >
+          </label>
+        </div>
+
+        <div class="page__media">
+          <label for class="media-radio">
+            <input v-model="socialmedia" type="radio" :name="socialmedia" value="Twitter">
+            <span>
+              <i class="fa fa-check"></i>
+            </span>
+            <i class="fa fa-twitter"></i>
+          </label>
+
+          <label class="media-radio">
+            <input v-model="socialmedia" type="radio" :name="socialmedia" value="Instagram">
+            <span>
+              <i class="fa fa-check"></i>
+            </span>
+
+            <i class="fa fa-instagram"></i>
+          </label>
+        </div>
         <button
           v-if="partnerusername != '' || partnerusername == username"
           v-on:click="next()"
           type="button"
+          class="next"
         >Next</button>
-      </p>
+      </div>
+
       <p v-if="show === 5">
         <!-- <p v-if="relationship === fwb">
                     Your result<br>

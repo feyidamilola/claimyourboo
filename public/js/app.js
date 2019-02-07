@@ -1877,6 +1877,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import Steppers from "./Stepper";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1936,6 +1978,14 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
 /* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37681,9 +37731,72 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
+        _vm.show === 2 && _vm.relationship != ""
+          ? _c(
+              "p",
+              { staticClass: "page__content" },
+              [
+                _vm._l(_vm.questions[_vm.relationship][0], function(option, i) {
+                  return _c("span", [
+                    i == 0
+                      ? _c("span", [
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(_vm.questions[_vm.relationship][0][i]) +
+                              "\n          "
+                          )
+                        ])
+                      : _c("span", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.length,
+                                expression: "length"
+                              }
+                            ],
+                            attrs: { type: "radio" },
+                            domProps: {
+                              value: option,
+                              checked: _vm._q(_vm.length, option)
+                            },
+                            on: {
+                              change: function($event) {
+                                _vm.length = option
+                              }
+                            }
+                          }),
+                          _vm._v("\n          " + _vm._s(option) + "\n        ")
+                        ])
+                  ])
+                }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _vm.relationship != "" && _vm.length != ""
+                  ? _c(
+                      "button",
+                      {
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            _vm.next()
+                          }
+                        }
+                      },
+                      [_vm._v("Next")]
+                    )
+                  : _vm._e()
+              ],
+              2
+            )
+          : _vm._e(),
+        _vm._v(" "),
         _vm.show === 3 && _vm.length != ""
           ? _c(
               "p",
+              { staticClass: "page__content" },
               [
                 _vm._l(_vm.questions[_vm.relationship][1], function(option, i) {
                   return _c("span", [
@@ -37760,39 +37873,110 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.show === 4
-          ? _c("p", [
-              _vm._v("\n      Partner Username\n      "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.partnerusername,
-                    expression: "partnerusername"
-                  }
-                ],
-                attrs: {
-                  type: "text",
-                  name: "partnerusername",
-                  placeholder: "Partner Username"
-                },
-                domProps: { value: _vm.partnerusername },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.partnerusername = $event.target.value
-                  }
-                }
-              }),
+          ? _c("div", { staticClass: "page__content" }, [
+              _c("p", { staticClass: "page__title mg-b--lg" }, [
+                _vm._v("Who be this person sef?")
+              ]),
               _vm._v(" "),
-              _c("br"),
+              _c("div", [
+                _c("label", { staticClass: "input" }, [
+                  _c("span", [_vm._v("@")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.partnerusername,
+                        expression: "partnerusername"
+                      }
+                    ],
+                    staticClass: "form__field",
+                    attrs: {
+                      type: "text",
+                      name: "partnerusername",
+                      placeholder: "enter your handle"
+                    },
+                    domProps: { value: _vm.partnerusername },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.partnerusername = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "page__media" }, [
+                _c(
+                  "label",
+                  { staticClass: "media-radio", attrs: { for: "" } },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.socialmedia,
+                          expression: "socialmedia"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        name: _vm.socialmedia,
+                        value: "Twitter"
+                      },
+                      domProps: { checked: _vm._q(_vm.socialmedia, "Twitter") },
+                      on: {
+                        change: function($event) {
+                          _vm.socialmedia = "Twitter"
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "fa fa-twitter" })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("label", { staticClass: "media-radio" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.socialmedia,
+                        expression: "socialmedia"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: _vm.socialmedia,
+                      value: "Instagram"
+                    },
+                    domProps: { checked: _vm._q(_vm.socialmedia, "Instagram") },
+                    on: {
+                      change: function($event) {
+                        _vm.socialmedia = "Instagram"
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "fa fa-instagram" })
+                ])
+              ]),
               _vm._v(" "),
               _vm.partnerusername != "" || _vm.partnerusername == _vm.username
                 ? _c(
                     "button",
                     {
+                      staticClass: "next",
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
@@ -37899,6 +38083,18 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", [_c("i", { staticClass: "fa fa-check" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "fa fa-check" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "fa fa-check" })])
   }
 ]
 render._withStripped = true
@@ -37972,27 +38168,41 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "steppers" }, [
       _c("div", { staticClass: "step" }, [
-        _c("span", [_vm._v("Step 1")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("\n      type your\n      handle\n    ")])
+        _c("div", [
+          _c("span", [_vm._v("Step 1")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("\n        type your\n        handle\n      ")])
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "step" }, [
-        _c("span", [_vm._v("Step 2")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("type your handle")])
-      ]),
+      _c("div", { staticClass: "line" }),
       _vm._v(" "),
       _c("div", { staticClass: "step" }, [
-        _c("span", [_vm._v("Step 3")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("\n      type your\n      handle\n    ")])
+        _c("div", [
+          _c("span", [_vm._v("Step 2 :")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("state your claim")])
+        ])
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "line" }),
+      _vm._v(" "),
       _c("div", { staticClass: "step" }, [
-        _c("span", [_vm._v("Step 4")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("\n      type your\n      handle\n    ")])
+        _c("div", [
+          _c("span", [_vm._v("Step 3")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("verify your claim")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "line" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "step" }, [
+        _c("div", [
+          _c("span", [_vm._v("Step 4")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("claim your boo")])
+        ])
       ])
     ])
   }
