@@ -42,6 +42,7 @@ class ViewsController extends Controller
             'length' => $request->get('length'),
             'personal_response' => $request->get('personal'),
             'partner_handle' => $request->get('partnerusername'),
+            'result' => $request->get('result'),
             'share' => $request->get('share'),
         ]);
         return response()->json([$request->all()]);

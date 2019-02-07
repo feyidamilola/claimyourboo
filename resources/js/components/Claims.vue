@@ -75,8 +75,6 @@
 
       <p v-if="show === 3 && length != ''" class="page__content">
         <span v-for="(option , i) in questions[relationship][1]">
-          <input v-model="relationship" type="radio" :name="relationship" :value="key">
-          {{key}}
           <span v-if="i == 0">{{ questions[relationship][1][i]}}</span>
           <span v-else>
             <input type="radio" :value="option" v-model="personal">
@@ -88,7 +86,7 @@
       </p>
 
       <div v-if="show === 4" class="page__content">
-        <p class="page__title mg-b--lg">Who be this person sef?</p>
+        <p class="page__title mg-b--lg">Who be this person to you sef?</p>
         <div>
           <label class="input">
             <span>@</span>
@@ -121,24 +119,19 @@
           </label>
         </div>
         <button
-          v-if="partnerusername != '' || partnerusername == username"
-          v-on:click="next()"
-          type="button"
-          class="next"
-        >Next</button>
+            v-if="partnerusername != '' || partnerusername == username"
+            v-on:click="next()"
+            type="button"
+            class="next">
+            Next
+        </button>
       </div>
 
-      <p v-if="show === 5">
-        <!-- <p v-if="relationship === fwb">
-                    Your result<br>
-                    Your partner is {{partnerusername}} and your relationship is {{relationship}} <br>
-                    You have been together for {{length}} <br>
-        </p>-->
+      <div v-if="show === 5">
+        
         <span style="border: 1px solid grey">Your result
           <br>
-          Your partner is {{partnerusername}} and your relationship is {{relationship}}
-          <br>
-          You have been together for {{length}}
+          {{result}}
           <br>
         </span>
         <!-- <hr> -->
@@ -146,8 +139,8 @@
         <input v-model="share" type="radio" :name="share" value="Yes">Yes
         <input v-model="share" type="radio" :name="share" value="No">No
         <button v-if="share != ''" v-on:click="submit()" type="submit">Submit</button>
-      </p>
-
+      </div>
+      
       <stepper></stepper>
     </form>
   </div>
@@ -155,6 +148,7 @@
 
 <script>
 import Question from "../Collections";
+import response from "../Response";
 // import Steppers from "./Stepper";
 
 export default {
@@ -172,11 +166,10 @@ export default {
     };
   },
   computed: {
-    reversedMessage: function() {
-      // `this` points to the vm instance
-      console.log(this.questions);
-      //   return this.questions;
-    }
+    result: function() {
+     return response(this.partnerusername , this.relationship, this.length, this.personal)
+  },
+    
   },
   methods: {
     next() {
@@ -191,6 +184,7 @@ export default {
         this.length,
         this.personal,
         this.partnerusername,
+        this.result,
         this.share
       );
       let form = new FormData();
@@ -200,6 +194,7 @@ export default {
       form.append("length", this.length);
       form.append("personal", this.personal);
       form.append("partnerusername", this.partnerusername);
+      form.append("result", this.result);
       form.append("share", this.share);
       axios
         .post("/submit", form)

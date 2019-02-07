@@ -13,6 +13,7 @@ class Claim extends Model
             'length',
             'personal_response',
             'partner_handle',
-            'share'
+            'share',
+            'result'
     ];
 }
