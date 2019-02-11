@@ -1,6 +1,5 @@
 $(function() {
     var body = document.querySelector("body");
-    console.log(body);
     var backgrounds = [
         "url(../img/bg1.png)",
         "url(../img/bg3.jpg)",

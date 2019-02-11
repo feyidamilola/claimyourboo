@@ -1,6 +1,6 @@
 <template>
   <div class="steppers">
-    <div class="step">
+    <div class="step step-active">
       <div>
         <span>Step 1</span>
         <p>
@@ -33,6 +33,16 @@
     <div class="step">
       <div>
         <span>Step 4</span>
+        <p>authorize your claim</p>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+
+    <div class="step">
+      <div>
+        <span>Step 5</span>
         <p>claim your boo</p>
       </div>
     </div>

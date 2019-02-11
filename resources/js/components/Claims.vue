@@ -39,51 +39,74 @@
         </div>
 
         <br>
-        <button v-if="socialmedia != '' && username!= ''" v-on:click="next()" type="button">Next</button>
+        <button
+          v-if="socialmedia != '' && username!= ''"
+          v-on:click="next()"
+          type="button"
+          class="btn"
+        >Next</button>
       </div>
 
       <div v-if="show === 1" class="page__content">
         <p class="page__title mg-b--lg">What’s your claim?</p>
 
-        <div class="question2">
-          <div v-for="(question , key) in questions">
+        <div class="question2 row">
+          <div v-for="(question , key) in questions" class="col-md-4 col-sm-12 col-xs-12">
             <label>
               <input v-model="relationship" type="radio" :name="relationship" :value="key">
-              <span>{{key}}</span>
+              <span class="quest">{{key}}</span>
+
+              <i class="fa fa-check"></i>
             </label>
           </div>
         </div>
         <br>
-        <button v-if="relationship != ''" v-on:click="next()" type="button">Next</button>
+        <button v-if="relationship != ''" v-on:click="next()" type="button" class="btn">Next</button>
       </div>
 
-      <p v-if="show === 2 && relationship != ''" class="page__content">
-        <span v-for="(option , i) in questions[relationship][0]">
-          <!-- <input v-model="relationship" type="radio" :name="relationship" :value="key"/> {{key}} -->
-          <span v-if="i == 0">
-            {{ questions[relationship][0][i]}}
-            <!-- {{option}} -->
-          </span>
-          <span v-else>
-            <input type="radio" :value="option" v-model="length">
-            {{option}}
-          </span>
-        </span>
-        <br>
-        <button v-if="relationship != '' && length != '' " v-on:click="next()" type="button">Next</button>
-      </p>
+      <div v-if="show === 2 && relationship != ''" class="page__content row claim">
+        <div
+          v-for="(option , i) in questions[relationship][0]"
+          class="col-md-4 col-sm-12 col-xs-12"
+          v-bind:class="{ 'col-md-12': i === 0 }"
+        >
+          <p v-if="i == 0" class="page__title mg-b--lg">{{ questions[relationship][0][i]}}</p>
 
-      <p v-if="show === 3 && length != ''" class="page__content">
-        <span v-for="(option , i) in questions[relationship][1]">
-          <span v-if="i == 0">{{ questions[relationship][1][i]}}</span>
-          <span v-else>
+          <label v-else>
+            <input type="radio" :value="option" v-model="length">
+            <span>{{option}}</span>
+            <i class="fa fa-check"></i>
+          </label>
+        </div>
+        <button
+          v-if="relationship != '' && length != '' "
+          v-on:click="next()"
+          type="button"
+          class="btn col-md-12"
+        >Next</button>
+      </div>
+
+      <div v-if="show === 3 && length != ''" class="page__content row claim">
+        <div
+          v-for="(option , i) in questions[relationship][1]"
+          class="col-sm-12 col-xs-12"
+          v-bind:class="[{ 'col-md-12': i === 0 } , `col-md-${12 / (questions[relationship][1].length - 1)}` ]"
+        >
+          <p v-if="i == 0" class="page__title mg-b--lg">{{ questions[relationship][1][i]}}</p>
+
+          <label v-else>
             <input type="radio" :value="option" v-model="personal">
-            {{option}}
-          </span>
-        </span>
-        <br>
-        <button v-if="relationship != '' && personal != '' " v-on:click="next()" type="button">Next</button>
-      </p>
+            <span>{{option}}</span>
+            <i class="fa fa-check"></i>
+          </label>
+        </div>
+        <button
+          v-if="relationship != '' && personal != '' "
+          v-on:click="next()"
+          type="button"
+          class="btn col-md-12"
+        >Next</button>
+      </div>
 
       <div v-if="show === 4" class="page__content">
         <p class="page__title mg-b--lg">Who be this person to you sef?</p>
@@ -93,14 +116,14 @@
             <input
               type="text"
               name="partnerusername"
-              placeholder="enter your handle"
+              placeholder="Enter partners "
               v-model="partnerusername"
               class="form__field"
             >
           </label>
         </div>
 
-        <div class="page__media">
+        <!-- <div class="page__media">
           <label for class="media-radio">
             <input v-model="socialmedia" type="radio" :name="socialmedia" value="Twitter">
             <span>
@@ -117,30 +140,27 @@
 
             <i class="fa fa-instagram"></i>
           </label>
-        </div>
+        </div>-->
         <button
-            v-if="partnerusername != '' || partnerusername == username"
-            v-on:click="next()"
-            type="button"
-            class="next">
-            Next
-        </button>
+          v-if="partnerusername != '' || partnerusername == username"
+          v-on:click="next()"
+          type="button"
+          class="btn"
+        >Next</button>
       </div>
 
-      <div v-if="show === 5">
-        
-        <span style="border: 1px solid grey">Your result
-          <br>
+      <div v-if="show === 5" class="page__content">
+        <p class="page__subtitle mg-b">
+
           {{result}}
-          <br>
-        </span>
+        </p>
         <!-- <hr> -->
-        Share
+        <p class="page__subtitle mg-b">Share</p>
         <input v-model="share" type="radio" :name="share" value="Yes">Yes
         <input v-model="share" type="radio" :name="share" value="No">No
         <button v-if="share != ''" v-on:click="submit()" type="submit">Submit</button>
       </div>
-      
+
       <stepper></stepper>
     </form>
   </div>
@@ -165,16 +185,40 @@ export default {
       share: ""
     };
   },
+  mounted() {},
   computed: {
     result: function() {
-     return response(this.partnerusername , this.relationship, this.length, this.personal)
-  },
-    
+      console.log(
+        this.partnerusername,
+        this.relationship,
+        this.length,
+        this.personal
+      );
+      return response(
+        this.partnerusername,
+        this.relationship,
+        this.length,
+        this.personal
+      );
+    }
   },
   methods: {
     next() {
       this.show = this.show + 1;
-      console.log(this.relationship);
+      let steppers = document.querySelectorAll(".step");
+
+      Array.from(steppers).forEach((step, i) => {
+        console.log(step);
+        if (step.classList.contains("step-active")) {
+          step.classList.remove("step-active");
+        }
+      });
+
+      Array.from(steppers).forEach((step, i) => {
+        if (i === this.show) {
+          step.classList.add("step-active");
+        }
+      });
     },
     submit() {
       console.log(

@@ -23,7 +23,7 @@
 
 <body>
     <div class="overlay"></div>
-    <div>
+    {{-- <div> --}}
 
         <div id="app" class="page">
             <div class="page__nav">

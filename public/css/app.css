@@ -5,25 +5,40 @@
 
 body {
   background-size: cover !important;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 .overlay {
   position: absolute;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   left: 0;
   top: 0;
   opacity: 0.8;
   background-color: #e9304d;
+  z-index: 2;
 }
 
 .page {
   min-height: 100vh;
   font-family: "Questrial", sans-serif;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
   position: relative;
+  width: 100%;
   z-index: 222;
+}
+.page::after, .page::before {
+  position: absolute;
+  min-height: 100vh;
+  width: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.8;
+  background-color: #e9304d;
+  z-index: 2;
 }
 .page__nav {
   height: 60px;
@@ -44,6 +59,7 @@ body {
   position: relative;
   min-height: calc(100vh - 60px);
   align-items: center;
+  padding: 40px 0;
 }
 .page__content {
   max-width: 770px;
@@ -166,8 +182,45 @@ label.input input {
   flex-grow: 1;
 }
 .question2 > div {
-  width: 33%;
-  border: 1px solid green;
+  margin-bottom: 20px;
+}
+.question2 > div > label {
+  width: 100%;
+  border: 1px solid #c537a4;
+  margin-bottom: 0;
+  height: 150px;
+  position: relative;
+  background: white;
+  border-radius: 5px;
+}
+.question2 > div > label > input {
+  margin-bottom: 0;
+  height: 150px;
+  position: relative;
+  opacity: 0;
+}
+.question2 > div > label > .quest {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.question2 > div > label > i {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 10px;
+  color: white;
+  padding: 2px;
+  background-color: #17eb68;
+  border-radius: 50%;
+  opacity: 0;
+}
+.question2 > div > label > input:checked ~ i {
+  opacity: 1;
 }
 
 .steppers {
@@ -180,25 +233,25 @@ label.input input {
   align-items: center;
 }
 .steppers .line {
-  border: 2px solid white;
+  border-top: 3px solid white;
   height: 2px;
-  width: 130px;
+  width: 70px;
 }
 .steppers .step {
   border: 1px solid white;
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   display: flex;
   align-items: center;
 }
 .steppers .step span {
-  font-size: 15px;
+  font-size: 12px;
   color: white;
 }
 .steppers .step p {
-  font-size: 20px;
+  font-size: 17px;
   color: white;
 }
 
@@ -258,4 +311,93 @@ label.input input {
 
 #about-click {
   cursor: pointer;
+}
+
+.step-active {
+  background-color: #e9304d;
+  color: white;
+  -webkit-animation: scale 1s infinite;
+          animation: scale 1s infinite;
+}
+
+@-webkit-keyframes scale {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes scale {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+.btn {
+  color: white;
+  text-align: center;
+  font-size: 19px;
+  margin-top: 25px;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+}
+
+.claim > .col-md-4 {
+  height: 100px;
+  margin-bottom: 20px;
+}
+.claim label {
+  width: 100%;
+  border: 1px solid #c537a4;
+  margin-bottom: 0;
+  height: 100px;
+  position: relative;
+  background: white;
+  border-radius: 5px;
+}
+.claim label > input {
+  margin-bottom: 0;
+  height: 150px;
+  position: relative;
+  opacity: 0;
+}
+.claim label > span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.claim label > i {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 10px;
+  color: white;
+  padding: 2px;
+  background-color: #17eb68;
+  border-radius: 50%;
+  opacity: 0;
+}
+.claim label > input:checked ~ i {
+  opacity: 1;
 }

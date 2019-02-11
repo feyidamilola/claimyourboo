@@ -1913,6 +1913,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import Steppers from "./Stepper";
 
@@ -1930,15 +1950,31 @@ __webpack_require__.r(__webpack_exports__);
       share: ""
     };
   },
+  mounted: function mounted() {},
   computed: {
     result: function result() {
+      console.log(this.partnerusername, this.relationship, this.length, this.personal);
       return Object(_Response__WEBPACK_IMPORTED_MODULE_1__["default"])(this.partnerusername, this.relationship, this.length, this.personal);
     }
   },
   methods: {
     next: function next() {
+      var _this = this;
+
       this.show = this.show + 1;
-      console.log(this.relationship);
+      var steppers = document.querySelectorAll(".step");
+      Array.from(steppers).forEach(function (step, i) {
+        console.log(step);
+
+        if (step.classList.contains("step-active")) {
+          step.classList.remove("step-active");
+        }
+      });
+      Array.from(steppers).forEach(function (step, i) {
+        if (i === _this.show) {
+          step.classList.add("step-active");
+        }
+      });
     },
     submit: function submit() {
       console.log(this.username, this.socialmedia, this.relationship, this.length, this.personal, this.partnerusername, this.result, this.share);
@@ -1971,6 +2007,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37037,6 +37083,7 @@ var render = function() {
                 ? _c(
                     "button",
                     {
+                      staticClass: "btn",
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
@@ -37058,34 +37105,42 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "question2" },
+                { staticClass: "question2 row" },
                 _vm._l(_vm.questions, function(question, key) {
-                  return _c("div", [
-                    _c("label", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.relationship,
-                            expression: "relationship"
+                  return _c(
+                    "div",
+                    { staticClass: "col-md-4 col-sm-12 col-xs-12" },
+                    [
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.relationship,
+                              expression: "relationship"
+                            }
+                          ],
+                          attrs: { type: "radio", name: _vm.relationship },
+                          domProps: {
+                            value: key,
+                            checked: _vm._q(_vm.relationship, key)
+                          },
+                          on: {
+                            change: function($event) {
+                              _vm.relationship = key
+                            }
                           }
-                        ],
-                        attrs: { type: "radio", name: _vm.relationship },
-                        domProps: {
-                          value: key,
-                          checked: _vm._q(_vm.relationship, key)
-                        },
-                        on: {
-                          change: function($event) {
-                            _vm.relationship = key
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", [_vm._v(_vm._s(key))])
-                    ])
-                  ])
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "quest" }, [
+                          _vm._v(_vm._s(key))
+                        ]),
+                        _vm._v(" "),
+                        _c("i", { staticClass: "fa fa-check" })
+                      ])
+                    ]
+                  )
                 }),
                 0
               ),
@@ -37096,6 +37151,7 @@ var render = function() {
                 ? _c(
                     "button",
                     {
+                      staticClass: "btn",
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
@@ -37111,51 +37167,58 @@ var render = function() {
         _vm._v(" "),
         _vm.show === 2 && _vm.relationship != ""
           ? _c(
-              "p",
-              { staticClass: "page__content" },
+              "div",
+              { staticClass: "page__content row claim" },
               [
                 _vm._l(_vm.questions[_vm.relationship][0], function(option, i) {
-                  return _c("span", [
-                    i == 0
-                      ? _c("span", [
-                          _vm._v(
-                            "\n          " +
-                              _vm._s(_vm.questions[_vm.relationship][0][i]) +
-                              "\n          "
-                          )
-                        ])
-                      : _c("span", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.length,
-                                expression: "length"
+                  return _c(
+                    "div",
+                    {
+                      staticClass: "col-md-4 col-sm-12 col-xs-12",
+                      class: { "col-md-12": i === 0 }
+                    },
+                    [
+                      i == 0
+                        ? _c("p", { staticClass: "page__title mg-b--lg" }, [
+                            _vm._v(
+                              _vm._s(_vm.questions[_vm.relationship][0][i])
+                            )
+                          ])
+                        : _c("label", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.length,
+                                  expression: "length"
+                                }
+                              ],
+                              attrs: { type: "radio" },
+                              domProps: {
+                                value: option,
+                                checked: _vm._q(_vm.length, option)
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.length = option
+                                }
                               }
-                            ],
-                            attrs: { type: "radio" },
-                            domProps: {
-                              value: option,
-                              checked: _vm._q(_vm.length, option)
-                            },
-                            on: {
-                              change: function($event) {
-                                _vm.length = option
-                              }
-                            }
-                          }),
-                          _vm._v("\n          " + _vm._s(option) + "\n        ")
-                        ])
-                  ])
+                            }),
+                            _vm._v(" "),
+                            _c("span", [_vm._v(_vm._s(option))]),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "fa fa-check" })
+                          ])
+                    ]
+                  )
                 }),
-                _vm._v(" "),
-                _c("br"),
                 _vm._v(" "),
                 _vm.relationship != "" && _vm.length != ""
                   ? _c(
                       "button",
                       {
+                        staticClass: "btn col-md-12",
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
@@ -37173,47 +37236,62 @@ var render = function() {
         _vm._v(" "),
         _vm.show === 3 && _vm.length != ""
           ? _c(
-              "p",
-              { staticClass: "page__content" },
+              "div",
+              { staticClass: "page__content row claim" },
               [
                 _vm._l(_vm.questions[_vm.relationship][1], function(option, i) {
-                  return _c("span", [
-                    i == 0
-                      ? _c("span", [
-                          _vm._v(_vm._s(_vm.questions[_vm.relationship][1][i]))
-                        ])
-                      : _c("span", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.personal,
-                                expression: "personal"
+                  return _c(
+                    "div",
+                    {
+                      staticClass: "col-sm-12 col-xs-12",
+                      class: [
+                        { "col-md-12": i === 0 },
+                        "col-md-" +
+                          12 / (_vm.questions[_vm.relationship][1].length - 1)
+                      ]
+                    },
+                    [
+                      i == 0
+                        ? _c("p", { staticClass: "page__title mg-b--lg" }, [
+                            _vm._v(
+                              _vm._s(_vm.questions[_vm.relationship][1][i])
+                            )
+                          ])
+                        : _c("label", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.personal,
+                                  expression: "personal"
+                                }
+                              ],
+                              attrs: { type: "radio" },
+                              domProps: {
+                                value: option,
+                                checked: _vm._q(_vm.personal, option)
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.personal = option
+                                }
                               }
-                            ],
-                            attrs: { type: "radio" },
-                            domProps: {
-                              value: option,
-                              checked: _vm._q(_vm.personal, option)
-                            },
-                            on: {
-                              change: function($event) {
-                                _vm.personal = option
-                              }
-                            }
-                          }),
-                          _vm._v("\n          " + _vm._s(option) + "\n        ")
-                        ])
-                  ])
+                            }),
+                            _vm._v(" "),
+                            _c("span", [_vm._v(_vm._s(option))]),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "fa fa-check" })
+                          ])
+                    ]
+                  )
                 }),
-                _vm._v(" "),
-                _c("br"),
                 _vm._v(" "),
                 _vm.relationship != "" && _vm.personal != ""
                   ? _c(
                       "button",
                       {
+                        staticClass: "btn col-md-12",
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
@@ -37252,7 +37330,7 @@ var render = function() {
                     attrs: {
                       type: "text",
                       name: "partnerusername",
-                      placeholder: "enter your handle"
+                      placeholder: "Enter partners "
                     },
                     domProps: { value: _vm.partnerusername },
                     on: {
@@ -37267,73 +37345,11 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "page__media" }, [
-                _c(
-                  "label",
-                  { staticClass: "media-radio", attrs: { for: "" } },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.socialmedia,
-                          expression: "socialmedia"
-                        }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: _vm.socialmedia,
-                        value: "Twitter"
-                      },
-                      domProps: { checked: _vm._q(_vm.socialmedia, "Twitter") },
-                      on: {
-                        change: function($event) {
-                          _vm.socialmedia = "Twitter"
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "fa fa-twitter" })
-                  ]
-                ),
-                _vm._v(" "),
-                _c("label", { staticClass: "media-radio" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.socialmedia,
-                        expression: "socialmedia"
-                      }
-                    ],
-                    attrs: {
-                      type: "radio",
-                      name: _vm.socialmedia,
-                      value: "Instagram"
-                    },
-                    domProps: { checked: _vm._q(_vm.socialmedia, "Instagram") },
-                    on: {
-                      change: function($event) {
-                        _vm.socialmedia = "Instagram"
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fa fa-instagram" })
-                ])
-              ]),
-              _vm._v(" "),
               _vm.partnerusername != "" || _vm.partnerusername == _vm.username
                 ? _c(
                     "button",
                     {
-                      staticClass: "next",
+                      staticClass: "btn",
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
@@ -37341,22 +37357,22 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("\n          Next\n      ")]
+                    [_vm._v("Next")]
                   )
                 : _vm._e()
             ])
           : _vm._e(),
         _vm._v(" "),
         _vm.show === 5
-          ? _c("div", [
-              _c("span", { staticStyle: { border: "1px solid grey" } }, [
-                _vm._v("Your result\n        "),
-                _c("br"),
-                _vm._v("\n        " + _vm._s(_vm.result) + "\n        "),
-                _c("br")
+          ? _c("div", { staticClass: "page__content" }, [
+              _c("p", { staticClass: "page__subtitle mg-b" }, [
+                _vm._v("\n\n        " + _vm._s(_vm.result) + "\n      ")
               ]),
               _vm._v(" "),
-              _vm._v("\n      Share\n      "),
+              _c("p", { staticClass: "page__subtitle mg-b" }, [
+                _vm._v("Share")
+              ]),
+              _vm._v(" "),
               _c("input", {
                 directives: [
                   {
@@ -37417,18 +37433,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "fa fa-check" })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "fa fa-check" })])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -37512,7 +37516,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "steppers" }, [
-      _c("div", { staticClass: "step" }, [
+      _c("div", { staticClass: "step step-active" }, [
         _c("div", [
           _c("span", [_vm._v("Step 1")]),
           _vm._v(" "),
@@ -37545,6 +37549,16 @@ var staticRenderFns = [
       _c("div", { staticClass: "step" }, [
         _c("div", [
           _c("span", [_vm._v("Step 4")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("authorize your claim")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "line" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "step" }, [
+        _c("div", [
+          _c("span", [_vm._v("Step 5")]),
           _vm._v(" "),
           _c("p", [_vm._v("claim your boo")])
         ])
@@ -48896,36 +48910,13 @@ function getRandomInt(max) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // import Vuetify from 'vuetify'
-// Vue.use(Vuetify)
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('Username', __webpack_require__(/*! ./components/Username.vue */ "./resources/js/components/Username.vue").default);
 Vue.component('Claims', __webpack_require__(/*! ./components/Claims.vue */ "./resources/js/components/Claims.vue").default);
 Vue.component('Navbar', __webpack_require__(/*! ./components/Navbar.vue */ "./resources/js/components/Navbar.vue").default);
 Vue.component('stepper', __webpack_require__(/*! ./components/Stepper.vue */ "./resources/js/components/Stepper.vue").default);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 var app = new Vue({
   el: '#app'
 });
@@ -49268,8 +49259,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\knowyourboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\knowyourboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/mac/Documents/project/Astractprojects/knowyourboo/knowyourboo/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/mac/Documents/project/Astractprojects/knowyourboo/knowyourboo/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
