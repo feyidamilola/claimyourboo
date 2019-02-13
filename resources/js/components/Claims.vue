@@ -21,7 +21,7 @@
           </label>
         </div>
         <div class="page__media">
-          <p class="white">Select social media :</p>
+          <p class="white">Select social media platform:</p>
           <label for class="media-radio">
             <input v-model="socialmedia" type="radio" :name="socialmedia" value="twitter">
             <span>
@@ -50,7 +50,7 @@
       </div>
 
       <div v-if="show === 1" class="page__content">
-        <p class="page__title mg-b">What’s your claim?</p>
+        <p class="page__title mg-b">What’s your claim? <small>(i.e. Indicate your relationship) </small></p>
         <p class="page__title--sm mg-b--lg">Find out now.</p>
         <div class="question2 row">
           <div v-for="(question , key) in questions" class="col-md-4 col-sm-12 col-xs-12">
