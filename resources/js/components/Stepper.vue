@@ -1,12 +1,9 @@
 <template>
   <div class="steppers">
-    <div class="step step-active">
+    <div class="step step-active" >
       <div>
-        <span>Step 1</span>
-        <p>
-          type your
-          handle
-        </p>
+        <p>Step 1 :</p>
+        <p>Handle</p>
       </div>
     </div>
 
@@ -14,8 +11,8 @@
 
     <div class="step">
       <div>
-        <span>Step 2 :</span>
-        <p>state your claim</p>
+        <p>Step 2 :</p>
+        <p>State</p>
       </div>
     </div>
 
@@ -23,8 +20,8 @@
 
     <div class="step">
       <div>
-        <span>Step 3</span>
-        <p>verify your claim</p>
+        <p>Step 3 :</p>
+        <p>Verify</p>
       </div>
     </div>
 
@@ -32,18 +29,17 @@
 
     <div class="step">
       <div>
-        <span>Step 4</span>
-        <p>authorize your claim</p>
+        <p>Step 4 :</p>
+        <p>Authorize</p>
       </div>
     </div>
 
     <div class="line"></div>
 
-
     <div class="step">
       <div>
-        <span>Step 5</span>
-        <p>claim your boo</p>
+        <p>Step 5 :</p>
+        <p>Claim</p>
       </div>
     </div>
   </div>

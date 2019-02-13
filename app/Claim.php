@@ -14,6 +14,7 @@ class Claim extends Model
             'personal_response',
             'partner_handle',
             'share',
-            'result'
+            'result',
+            'partner_social_media'
     ];
 }

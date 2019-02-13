@@ -16,12 +16,14 @@
               placeholder="enter your handle"
               v-model="username"
               class="form__field"
+              @keypress.64.prevent
             >
           </label>
         </div>
         <div class="page__media">
+          <p class="white">Select social media :</p>
           <label for class="media-radio">
-            <input v-model="socialmedia" type="radio" :name="socialmedia" value="Twitter">
+            <input v-model="socialmedia" type="radio" :name="socialmedia" value="twitter">
             <span>
               <i class="fa fa-check"></i>
             </span>
@@ -29,7 +31,7 @@
           </label>
 
           <label class="media-radio">
-            <input v-model="socialmedia" type="radio" :name="socialmedia" value="Instagram">
+            <input v-model="socialmedia" type="radio" :name="socialmedia" value="instagram">
             <span>
               <i class="fa fa-check"></i>
             </span>
@@ -48,8 +50,8 @@
       </div>
 
       <div v-if="show === 1" class="page__content">
-        <p class="page__title mg-b--lg">What’s your claim?</p>
-
+        <p class="page__title mg-b">What’s your claim?</p>
+        <p class="page__title--sm mg-b--lg">Find out now.</p>
         <div class="question2 row">
           <div v-for="(question , key) in questions" class="col-md-4 col-sm-12 col-xs-12">
             <label>
@@ -78,12 +80,14 @@
             <i class="fa fa-check"></i>
           </label>
         </div>
-        <button
-          v-if="relationship != '' && length != '' "
-          v-on:click="next()"
-          type="button"
-          class="btn col-md-12"
-        >Next</button>
+        <div class="col-md-12">
+          <button
+            v-if="relationship != '' && length != '' "
+            v-on:click="next()"
+            type="button"
+            class="btn"
+          >Next</button>
+        </div>
       </div>
 
       <div v-if="show === 3 && length != ''" class="page__content row claim">
@@ -100,32 +104,35 @@
             <i class="fa fa-check"></i>
           </label>
         </div>
-        <button
-          v-if="relationship != '' && personal != '' "
-          v-on:click="next()"
-          type="button"
-          class="btn col-md-12"
-        >Next</button>
+        <div class="col-md-12">
+          <button
+            v-if="relationship != '' && personal != '' "
+            v-on:click="next()"
+            type="button"
+            class="btn"
+          >Next</button>
+        </div>
       </div>
 
       <div v-if="show === 4" class="page__content">
-        <p class="page__title mg-b--lg">Who be this person to you sef?</p>
+        <p class="page__title mg-b--lg">Who be this person sef?</p>
         <div>
           <label class="input">
             <span>@</span>
             <input
               type="text"
               name="partnerusername"
-              placeholder="Enter partners "
+              placeholder="Enter partners handle"
               v-model="partnerusername"
               class="form__field"
+              @keypress.64.prevent
             >
           </label>
         </div>
 
-        <!-- <div class="page__media">
+        <div class="page__media">
           <label for class="media-radio">
-            <input v-model="socialmedia" type="radio" :name="socialmedia" value="Twitter">
+            <input v-model="socialmedia" type="radio" :name="socialmedia" value="twitter">
             <span>
               <i class="fa fa-check"></i>
             </span>
@@ -133,42 +140,46 @@
           </label>
 
           <label class="media-radio">
-            <input v-model="socialmedia" type="radio" :name="socialmedia" value="Instagram">
+            <input v-model="socialmedia" type="radio" :name="socialmedia" value="instagram">
             <span>
               <i class="fa fa-check"></i>
             </span>
 
             <i class="fa fa-instagram"></i>
           </label>
-        </div>-->
+        </div>
         <button
           v-if="partnerusername != '' || partnerusername == username"
-          v-on:click="next()"
+          v-on:click="submit()"
           type="button"
           class="btn"
         >Next</button>
       </div>
 
-      <div v-if="show === 5" class="page__content">
-        <p class="page__subtitle mg-b">
-
-          {{result}}
-        </p>
-        <!-- <hr> -->
+      <!-- <div v-if="show === 5" class="page__content">
+        <p class="page__subtitle mg-b">{{result}}</p>
         <p class="page__subtitle mg-b">Share</p>
-        <input v-model="share" type="radio" :name="share" value="Yes">Yes
-        <input v-model="share" type="radio" :name="share" value="No">No
-        <button v-if="share != ''" v-on:click="submit()" type="submit">Submit</button>
-      </div>
-
-      <stepper></stepper>
+        <label class="share">
+          <input v-model="share" type="radio" :name="share" value="yes">Yes
+        </label>
+        <label class="share">
+          <input v-model="share" type="radio" :name="share" value="no">No
+        </label>
+        <div>
+          <button v-if="share != ''" v-on:click="submit()" type="submit" class="share">Submit</button>
+        </div>
+      </div> -->
     </form>
+    <stepper></stepper>
+    <loader :view="view"/>
   </div>
 </template>
 
 <script>
 import Question from "../Collections";
 import response from "../Response";
+import { fabric } from "fabric";
+
 // import Steppers from "./Stepper";
 
 export default {
@@ -182,33 +193,37 @@ export default {
       personal: "",
       username: "",
       partnerusername: "",
-      share: ""
+      share: "",
+      image: "",
+      view: false
     };
   },
-  mounted() {},
+  mounted: function() {
+    let canvas = new fabric.Canvas("canvas", {
+      width: 500,
+      height: 500
+    });
+  },
   computed: {
     result: function() {
-      console.log(
+
+      let details = response(
         this.partnerusername,
         this.relationship,
-        this.length,
-        this.personal
+        this.socialmedia
       );
-      return response(
-        this.partnerusername,
-        this.relationship,
-        this.length,
-        this.personal
-      );
+
+      this.image = details.image;
+      return details.result;
     }
   },
+
   methods: {
     next() {
       this.show = this.show + 1;
       let steppers = document.querySelectorAll(".step");
 
       Array.from(steppers).forEach((step, i) => {
-        console.log(step);
         if (step.classList.contains("step-active")) {
           step.classList.remove("step-active");
         }
@@ -221,16 +236,7 @@ export default {
       });
     },
     submit() {
-      console.log(
-        this.username,
-        this.socialmedia,
-        this.relationship,
-        this.length,
-        this.personal,
-        this.partnerusername,
-        this.result,
-        this.share
-      );
+      this.view = true;
       let form = new FormData();
       form.append("username", this.username);
       form.append("socialmedia", this.socialmedia);
@@ -239,10 +245,14 @@ export default {
       form.append("personal", this.personal);
       form.append("partnerusername", this.partnerusername);
       form.append("result", this.result);
-      form.append("share", this.share);
+      form.append("image", this.image);
+
       axios
         .post("/submit", form)
-        .then(response => console.log(response))
+        .then(response => {
+          console.log(response.data);
+          window.location.href = "http://localhost:8000/response/" +response.data.id+"/" + response.data.number;
+        })
         .catch(error => console.log(error));
     }
   }

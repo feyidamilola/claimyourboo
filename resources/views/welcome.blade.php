@@ -9,7 +9,7 @@
         window.Laravel = {csrfToken: '{{csrf_token()}}'}
     </script>
 
-    <title>Know your boo</title>
+    <title>Claim your boo</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
@@ -23,25 +23,31 @@
 
 <body>
     <div class="overlay"></div>
-    {{-- <div> --}}
-
-        <div id="app" class="page">
-            <div class="page__nav">
-                <div><img src="{{ asset('img/logo.png')}}" width="120"></div>
-                <div>
-                    <p id="about-click">About</p>
-                </div>
-            </div>
-
-            <Claims> </Claims>
-            <div class="about opacity-0">
-                <span class="close">X</span>
-                <div>
-                    We are good
-                </div>
-                <p></p>
+    <video autoplay muted loop id="myVideo">
+    <source src="{{asset('img/main_comp.mp4')}}" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    <div id="app" class="page">
+        <div class="page__nav">
+            <div><img src="{{ asset('img/logo.png')}}" width="120"></div>
+            <div>
+                <p id="about-click">Disclaimer</p>
             </div>
         </div>
+
+        <Claims></Claims>
+        {{-- <loader></loader> --}}
+
+        <div class="about opacity-0">
+            <span class="close">X</span>
+            <div>
+                ClaimYourBoo is meant to be light hearted and fun, so every result or reaction gotten from this application should not be
+                taken seriously. We will not be held responsible for any damages to your relationships or negative outcomes
+                associated with taking this quiz.
+            </div>
+            <p></p>
+        </div>
+    </div>
 
     </div>
 
@@ -56,8 +62,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
     <script src="{{'js/app.js'}}"></script>
-    <script src="{{'js/changebackground.js'}}"></script>
+    {{--
+    <script src="{{'js/changebackground.js'}}"></script> --}}
     <script src="{{'js/displayabout.js'}}"></script>
+    <script>
+        $(document).ready(function() {
+            $(window).keydown(function(event){
+                if(event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

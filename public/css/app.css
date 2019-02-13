@@ -1,4 +1,32 @@
-@import url(https://fonts.googleapis.com/css?family=Questrial);p {
+@import url(https://fonts.googleapis.com/css?family=Questrial);*::-webkit-media-controls-panel {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+/* Old shadow dom for play button */
+*::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+/* New shadow dom for play button */
+/* This one works! */
+*::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+  min-height: 100%;
+}
+
+p {
   margin: 0;
   padding: 0;
 }
@@ -8,17 +36,6 @@ body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
-}
-
-.overlay {
-  position: absolute;
-  min-height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  opacity: 0.8;
-  background-color: #e9304d;
-  z-index: 2;
 }
 
 .page {
@@ -51,20 +68,18 @@ body {
   display: flex;
   color: white;
   justify-content: space-between;
-  width: 150px;
   align-items: center;
 }
 .page__container {
-  display: flex;
   position: relative;
   min-height: calc(100vh - 60px);
-  align-items: center;
-  padding: 40px 0;
+  padding: 50px 0;
 }
 .page__content {
   max-width: 770px;
   margin: 0 auto;
   text-align: center;
+  padding: 15px;
 }
 .page__title {
   font-size: 35px;
@@ -73,6 +88,18 @@ body {
 .page__title--lg {
   font-size: 70px;
   line-height: 75px;
+}
+@media only screen and (min-width: 320px) and (max-width: 460px) {
+  .page__title--lg {
+    font-size: 40px;
+    line-height: 50px;
+  }
+}
+@media only screen and (min-width: 460px) and (max-width: 767px) {
+  .page__title--lg {
+    font-size: 50px;
+    line-height: 50px;
+  }
 }
 .page__subtitle {
   font-size: 25px;
@@ -83,13 +110,24 @@ body {
 .page__media {
   display: flex;
   margin: 0 auto;
-  max-width: 200px;
+  max-width: 250px;
   justify-content: space-around;
   margin-top: 15px;
+  align-items: center;
+}
+.page__thanks {
+  display: flex;
+  padding: 2em;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  min-height: 100vh;
+  color: white;
 }
 
 .form {
   width: 100%;
+  min-height: 40vh;
 }
 .form__field {
   -webkit-appearance: none;
@@ -115,7 +153,6 @@ body {
 
 label.input {
   display: flex;
-  width: 80%;
   margin: 20px auto;
   align-items: center;
   background-color: white;
@@ -125,7 +162,6 @@ label.input {
   color: #cecece;
   border: 1px solid white;
   box-shadow: 0 30px 35px 0 rgba(65, 8, 8, 0.15);
-  background-image: linear-gradient(82deg, #ffffff, #edd9d9);
 }
 label.input span {
   width: 5%;
@@ -152,20 +188,20 @@ label.input input {
 }
 .media-radio > span {
   position: absolute;
-  top: 0;
-  right: 5px;
+  top: -4px;
+  right: 2px;
   opacity: 0;
 }
 .media-radio > span i {
-  font-size: 10px;
+  font-size: 5px;
   color: white;
   padding: 2px;
   background-color: #17eb68;
   border-radius: 50%;
 }
 .media-radio i {
-  padding: 26px;
-  font-size: 26px;
+  padding: 13px;
+  font-size: 18px;
   border-radius: 5px;
   box-shadow: 0 20px 25px 0 rgba(77, 6, 6, 0.18);
   color: white;
@@ -231,11 +267,34 @@ label.input input {
   position: relative;
   max-width: 1000px;
   align-items: center;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}
+@media only screen and (min-width: 320px) and (max-width: 460px) {
+  .steppers {
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 460px) and (max-width: 767px) {
+  .steppers {
+    justify-content: center;
+  }
 }
 .steppers .line {
-  border-top: 3px solid white;
+  border-top: 3px solid #eaeaea;
   height: 2px;
   width: 70px;
+}
+@media only screen and (min-width: 320px) and (max-width: 460px) {
+  .steppers .line {
+    display: none;
+  }
+}
+@media only screen and (min-width: 460px) and (max-width: 767px) {
+  .steppers .line {
+    display: none;
+  }
 }
 .steppers .step {
   border: 1px solid white;
@@ -245,14 +304,50 @@ label.input input {
   border-radius: 50%;
   display: flex;
   align-items: center;
+  background: rgba(255, 255, 255, 0.6);
 }
-.steppers .step span {
-  font-size: 12px;
+@media only screen and (min-width: 320px) and (max-width: 460px) {
+  .steppers .step {
+    display: none;
+  }
+}
+@media only screen and (min-width: 460px) and (max-width: 767px) {
+  .steppers .step {
+    display: none;
+  }
+}
+.steppers .step-active {
+  border: 1px solid #eaeaea;
   color: white;
+  background: white !important;
+  transition: 0.7s all;
+}
+.steppers .step-active p {
+  opacity: 1 !important;
+  font-weight: 700;
+}
+@media only screen and (min-width: 320px) and (max-width: 460px) {
+  .steppers .step-active {
+    display: flex !important;
+    -webkit-animation: scale 1s infinite;
+            animation: scale 1s infinite;
+  }
+}
+@media only screen and (min-width: 460px) and (max-width: 767px) {
+  .steppers .step-active {
+    display: flex !important;
+    -webkit-animation: scale 1s infinite;
+            animation: scale 1s infinite;
+  }
+}
+.steppers .step > div {
+  width: inherit;
 }
 .steppers .step p {
-  font-size: 17px;
-  color: white;
+  font-size: 15px;
+  color: #e9304d;
+  text-align: center;
+  opacity: 0.6;
 }
 
 .next {
@@ -270,16 +365,14 @@ label.input input {
 .about {
   min-height: 100vh;
   background-color: white;
-  opacity: 0.9;
+  opacity: 0.95;
   position: absolute;
   width: 100%;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  top: 0%;
   z-index: 222;
 }
 .about span {
@@ -313,13 +406,6 @@ label.input input {
   cursor: pointer;
 }
 
-.step-active {
-  background-color: #e9304d;
-  color: white;
-  -webkit-animation: scale 1s infinite;
-          animation: scale 1s infinite;
-}
-
 @-webkit-keyframes scale {
   0% {
     -webkit-transform: scale(1);
@@ -350,13 +436,19 @@ label.input input {
   }
 }
 .btn {
-  color: white;
+  color: #e9304d;
   text-align: center;
   font-size: 19px;
   margin-top: 25px;
-  background-color: transparent;
+  background-color: white;
   outline: none;
-  border: 0;
+  border: 1px solid white;
+  padding: 10px 55px;
+  text-transform: uppercase;
+}
+.btn:hover {
+  color: white;
+  background: transparent;
 }
 
 .claim > .col-md-4 {
@@ -400,4 +492,173 @@ label.input input {
 }
 .claim label > input:checked ~ i {
   opacity: 1;
+}
+
+.white {
+  color: white;
+}
+
+.share {
+  position: relative;
+  color: #e9304d;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 19px;
+  margin-top: 15px;
+  background-color: white;
+  outline: none;
+  border: 1px solid white;
+  padding: 10px 55px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+}
+.share input {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+.share input:checked .share {
+  background: red;
+}
+
+.subbtn {
+  position: relative;
+  background-color: #e9304d;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 19px;
+  margin-top: 15px;
+  color: white;
+  outline: none;
+  border: 1px solid white;
+  padding: 10px 55px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.loader > div {
+  text-align: center;
+}
+.loader > div > div {
+  margin-bottom: 15px;
+}
+
+.loader-text {
+  color: #e9304d;
+  font-size: 23px;
+}
+
+.lds-heart {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: 32px 32px;
+          transform-origin: 32px 32px;
+}
+
+.lds-heart div {
+  top: 23px;
+  left: 19px;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background: #e9304d;
+  -webkit-animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+          animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.lds-heart div:after,
+.lds-heart div:before {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 48px;
+  height: 48px;
+  background: #e9304d;
+}
+
+.lds-heart div:before {
+  left: -32px;
+  border-radius: 50% 0 0 50%;
+}
+
+.lds-heart div:after {
+  top: -32px;
+  border-radius: 50% 50% 0 0;
+}
+
+@-webkit-keyframes lds-heart {
+  0% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  5% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  39% {
+    -webkit-transform: scale(0.85);
+            transform: scale(0.85);
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  60% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  100% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
+@keyframes lds-heart {
+  0% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  5% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  39% {
+    -webkit-transform: scale(0.85);
+            transform: scale(0.85);
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  60% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  100% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+#canvas {
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  border-color: #e9304d;
 }
