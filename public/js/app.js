@@ -1773,13 +1773,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['details', 'number'],
+  props: ["details", "number", "image"],
   data: function data() {
     return {
       res: this.details,
-      no: this.number
+      no: this.number,
+      img: this.image
     };
   },
   mounted: function mounted() {
@@ -1789,7 +1803,7 @@ __webpack_require__.r(__webpack_exports__);
       height: 600
     });
     canvas.selection = false;
-    var imageUrl = 'http://localhost:8000/img/res.jpg';
+    var imageUrl = "http://localhost:8000/img/res.jpg";
     fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].Image.fromURL(imageUrl, function (myImg) {
       //i create an extra var for to change some image properties
       var img1 = myImg.set({
@@ -1800,21 +1814,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       canvas.add(img1);
       canvas.sendToBack(img1);
-    }); // let res = new fabric.IText("hello".toUpperCase(), {
-    //   left: 0,
-    //   bottom: 0,
-    //   //   angle: 0,
-    //   fill: "#000",
-    //   scaleX: 1,
-    //   scaleY: 1,
-    //   fontWeight: "",
-    //   width: 300,
-    //   zIndex: 7
-    //   //   textAlign: "center",
-    //   //   originY : 'bottom'
-    // });
-    // canvas.add(res);
-
+    });
     var textString = "".concat(this.no, " people have claimed your boo as husband");
     var text = new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].Textbox(textString.toUpperCase(), {
       left: 0,
@@ -1827,7 +1827,7 @@ __webpack_require__.r(__webpack_exports__);
       zIndex: 7,
       textAlign: "center",
       fontSize: 19,
-      fontFamily: 'Pacifico'
+      fontFamily: "Pacifico"
     });
     var text2 = new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].Textbox(this.res.result.toUpperCase(), {
       left: 0,
@@ -1840,11 +1840,11 @@ __webpack_require__.r(__webpack_exports__);
       zIndex: 7,
       textAlign: "center",
       fontSize: 19,
-      fontFamily: 'Pacifico'
+      fontFamily: "Pacifico"
     });
     canvas.add(text);
     canvas.add(text2);
-    fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].Image.fromURL("http://fabricjs.com/assets/pug_small.jpg", function (myImg) {
+    fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].Image.fromURL("http://localhost:8000/img/".concat(this.img), function (myImg) {
       //i create an extra var for to change some image properties
       var img1 = myImg.set({
         left: 0,
@@ -1859,11 +1859,11 @@ __webpack_require__.r(__webpack_exports__);
 
     var widthscrencan = window.innerWidth > 0 ? window.innerWidth : screen.width; // capture width screen onload
 
-    var canvasScale = 1; //global  
+    var canvasScale = 1; //global
 
     if (widthscrencan <= 360) {
       var zoomIn = function zoomIn() {
-        var SCALE_FACTOR = .37;
+        var SCALE_FACTOR = 0.37;
         var canvasScale = canvasScale * SCALE_FACTOR;
         canvas.setHeight(canvas.getHeight() * SCALE_FACTOR);
         canvas.setWidth(canvas.getWidth() * SCALE_FACTOR);
@@ -1893,7 +1893,7 @@ __webpack_require__.r(__webpack_exports__);
 
     if (widthscrencan >= 361 || widthscrencan == 768) {
       var zoomIn768 = function zoomIn768() {
-        var SCALE_FACTOR = .45;
+        var SCALE_FACTOR = 0.45;
         canvasScale = canvasScale * SCALE_FACTOR;
         canvas.setHeight(canvas.getHeight() * SCALE_FACTOR);
         canvas.setWidth(canvas.getWidth() * SCALE_FACTOR);
@@ -1923,7 +1923,7 @@ __webpack_require__.r(__webpack_exports__);
 
     if (widthscrencan >= 769 || widthscrencan == 992) {
       var zoomIn992 = function zoomIn992() {
-        var SCALE_FACTOR = .5;
+        var SCALE_FACTOR = 0.5;
         canvasScale = canvasScale * SCALE_FACTOR;
         canvas.setHeight(canvas.getHeight() * SCALE_FACTOR);
         canvas.setWidth(canvas.getWidth() * SCALE_FACTOR);
@@ -2270,7 +2270,7 @@ __webpack_require__.r(__webpack_exports__);
       form.append("image", this.image);
       axios.post("/submit", form).then(function (response) {
         console.log(response.data);
-        window.location.href = "http://localhost:8000/response/" + response.data.id + "/" + response.data.number;
+        window.location.href = "http://localhost:8000/response/" + response.data.id + "/" + response.data.number + "/" + response.data.image;
       }).catch(function (error) {
         return console.log(error);
       });
@@ -69267,6 +69267,390 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-social-sharing/dist/vue-social-sharing.common.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/vue-social-sharing/dist/vue-social-sharing.common.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * vue-social-sharing v2.3.4 
+ * (c) 2019 nicolasbeauvais
+ * Released under the MIT License.
+ */
+
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var Vue = _interopDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"));
+
+var SocialSharingNetwork = {
+  functional: true,
+
+  props: {
+    network: {
+      type: String,
+      default: ''
+    }
+  },
+
+  render: function (createElement, context) {
+    var network = context.parent._data.baseNetworks[context.props.network];
+
+    if (!network) {
+      return console.warn(("Network " + (context.props.network) + " does not exist"));
+    }
+
+    return createElement(context.parent.networkTag, {
+      staticClass: context.data.staticClass || null,
+      staticStyle: context.data.staticStyle || null,
+      class: context.data.class || null,
+      style: context.data.style || null,
+      attrs: {
+        id: context.data.attrs.id || null,
+        'data-link': network.type === 'popup'
+          ? '#share-' + context.props.network
+          : context.parent.createSharingUrl(context.props.network),
+        'data-action': network.type === 'popup' ? null : network.action
+      },
+      on: {
+        click: network.type === 'popup' ? function () {
+          context.parent.share(context.props.network);
+        } : function () {
+          context.parent.touch(context.props.network);
+        }
+      }
+    }, context.children);
+  }
+};
+
+var email = {"sharer":"mailto:?subject=@title&body=@url%0D%0A%0D%0A@description","type":"direct"};
+var facebook = {"sharer":"https://www.facebook.com/sharer/sharer.php?u=@url&title=@title&description=@description&quote=@quote&hashtag=@hashtags","type":"popup"};
+var googleplus = {"sharer":"https://plus.google.com/share?url=@url","type":"popup"};
+var line = {"sharer":"http://line.me/R/msg/text/?@description%0D%0A@url","type":"popup"};
+var linkedin = {"sharer":"https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description","type":"popup"};
+var odnoklassniki = {"sharer":"https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=@url&st.comments=@description","type":"popup"};
+var pinterest = {"sharer":"https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title","type":"popup"};
+var reddit = {"sharer":"https://www.reddit.com/submit?url=@url&title=@title","type":"popup"};
+var skype = {"sharer":"https://web.skype.com/share?url=@description%0D%0A@url","type":"popup"};
+var telegram = {"sharer":"https://t.me/share/url?url=@url&text=@description","type":"popup"};
+var twitter = {"sharer":"https://twitter.com/intent/tweet?text=@title&url=@url&hashtags=@hashtags@twitteruser","type":"popup"};
+var viber = {"sharer":"viber://forward?text=@url @description","type":"direct"};
+var vk = {"sharer":"https://vk.com/share.php?url=@url&title=@title&description=@description&image=@media&noparse=true","type":"popup"};
+var weibo = {"sharer":"http://service.weibo.com/share/share.php?url=@url&title=@title","type":"popup"};
+var whatsapp = {"sharer":"whatsapp://send?text=@description%0D%0A@url","type":"direct","action":"share/whatsapp/share"};
+var sms = {"sharer":"sms:?body=@url%20@description","type":"direct"};
+var BaseNetworks = {
+	email: email,
+	facebook: facebook,
+	googleplus: googleplus,
+	line: line,
+	linkedin: linkedin,
+	odnoklassniki: odnoklassniki,
+	pinterest: pinterest,
+	reddit: reddit,
+	skype: skype,
+	telegram: telegram,
+	twitter: twitter,
+	viber: viber,
+	vk: vk,
+	weibo: weibo,
+	whatsapp: whatsapp,
+	sms: sms
+};
+
+var inBrowser = typeof window !== 'undefined';
+var $window = inBrowser ? window : null;
+
+var SocialSharing = {
+  props: {
+    /**
+     * URL to share.
+     * @var string
+     */
+    url: {
+      type: String,
+      default: inBrowser ? window.location.href : ''
+    },
+
+    /**
+     * Sharing title, if available by network.
+     * @var string
+     */
+    title: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Sharing description, if available by network.
+     * @var string
+     */
+    description: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Facebook quote
+     * @var string
+     */
+    quote: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Twitter hashtags
+     * @var string
+     */
+    hashtags: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Twitter user.
+     * @var string
+     */
+    twitterUser: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Flag that indicates if counts should be retrieved.
+     * - NOT WORKING IN CURRENT VERSION
+     * @var mixed
+     */
+    withCounts: {
+      type: [String, Boolean],
+      default: false
+    },
+
+    /**
+     * Google plus key.
+     * @var string
+     */
+    googleKey: {
+      type: String,
+      default: undefined
+    },
+
+    /**
+     * Pinterest Media URL.
+     * Specifies the image/media to be used.
+     */
+    media: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Network sub component tag.
+     * Default to span tag
+     */
+    networkTag: {
+      type: String,
+      default: 'span'
+    },
+
+    /**
+     * Additional or overridden networks.
+     * Default to BaseNetworks
+     */
+    networks: {
+      type: Object,
+      default: function () {
+        return {};
+      }
+    }
+  },
+
+  data: function data () {
+    return {
+      /**
+       * Available sharing networks.
+       * @param object
+       */
+      baseNetworks: BaseNetworks,
+
+      /**
+       * Popup settings.
+       * @param object
+       */
+      popup: {
+        status: false,
+        resizable: true,
+        toolbar: false,
+        menubar: false,
+        scrollbars: false,
+        location: false,
+        directories: false,
+        width: 626,
+        height: 436,
+        top: 0,
+        left: 0,
+        window: undefined,
+        interval: null
+      }
+    };
+  },
+
+  methods: {
+    /**
+     * Returns generated sharer url.
+     *
+     * @param network Social network key.
+     */
+    createSharingUrl: function createSharingUrl (network) {
+      return this.baseNetworks[network].sharer
+        .replace(/@url/g, encodeURIComponent(this.url))
+        .replace(/@title/g, encodeURIComponent(this.title))
+        .replace(/@description/g, encodeURIComponent(this.description))
+        .replace(/@quote/g, encodeURIComponent(this.quote))
+        .replace(/@hashtags/g, this.encodeFacebookHashtags(network, this.hashtags))
+        .replace(/@media/g, this.media)
+        .replace(/@twitteruser/g, this.twitterUser ? '&via=' + this.twitterUser : '');
+    },
+    /**
+     * encode hash tag for facebook url
+     * @param  network  to check if the current network is facebbok
+     * @param  hashtags all hashtags specified
+     * @return          encoded hashtag [only the first one because of facebook policy]
+     */
+    encodeFacebookHashtags: function encodeFacebookHashtags (network, hashtags) {
+      return network === 'facebook' ? '%23' + hashtags : hashtags;
+    },
+    /**
+     * Shares URL in specified network.
+     *
+     * @param string network Social network key.
+     */
+    share: function share (network) {
+      this.openSharer(network, this.createSharingUrl(network));
+
+      this.$root.$emit('social_shares_open', network, this.url);
+      this.$emit('open', network, this.url);
+    },
+
+    /**
+     * Touches network and emits click event.
+     *
+     * @param string network Social network key.
+     */
+    touch: function touch (network) {
+      window.open(this.createSharingUrl(network), '_self');
+
+      this.$root.$emit('social_shares_open', network, this.url);
+      this.$emit('open', network, this.url);
+    },
+
+    /**
+     * Opens sharer popup.
+     *
+     * @param string url Url to share.
+     */
+    openSharer: function openSharer (network, url) {
+      var this$1 = this;
+
+      // If a popup window already exist it will be replaced, trigger a close event.
+      if (this.popup.window && this.popup.interval) {
+        clearInterval(this.popup.interval);
+
+        this.popup.window.close();// Force close (for Facebook)
+
+        this.$root.$emit('social_shares_change', network, this.url);
+        this.$emit('change', network, this.url);
+      }
+
+      this.popup.window = window.open(
+        url,
+        'sharer',
+        'status=' + (this.popup.status ? 'yes' : 'no') +
+        ',height=' + this.popup.height +
+        ',width=' + this.popup.width +
+        ',resizable=' + (this.popup.resizable ? 'yes' : 'no') +
+        ',left=' + this.popup.left +
+        ',top=' + this.popup.top +
+        ',screenX=' + this.popup.left +
+        ',screenY=' + this.popup.top +
+        ',toolbar=' + (this.popup.toolbar ? 'yes' : 'no') +
+        ',menubar=' + (this.popup.menubar ? 'yes' : 'no') +
+        ',scrollbars=' + (this.popup.scrollbars ? 'yes' : 'no') +
+        ',location=' + (this.popup.location ? 'yes' : 'no') +
+        ',directories=' + (this.popup.directories ? 'yes' : 'no')
+      );
+
+      this.popup.window.focus();
+
+      // Create an interval to detect popup closing event
+      this.popup.interval = setInterval(function () {
+        if (this$1.popup.window.closed) {
+          clearInterval(this$1.popup.interval);
+
+          this$1.popup.window = undefined;
+
+          this$1.$root.$emit('social_shares_close', network, this$1.url);
+          this$1.$emit('close', network, this$1.url);
+        }
+      }, 500);
+    }
+  },
+
+  /**
+   * Merge base networks list with user's list
+   */
+  beforeMount: function beforeMount () {
+    this.baseNetworks = Vue.util.extend(this.baseNetworks, this.networks);
+  },
+
+  /**
+   * Sets popup default dimensions.
+   */
+  mounted: function mounted () {
+    if (!inBrowser) {
+      return;
+    }
+
+    /**
+     * Center the popup on dual screens
+     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
+     */
+    var dualScreenLeft = $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
+    var dualScreenTop = $window.screenTop !== undefined ? $window.screenTop : screen.top;
+
+    var width = $window.innerWidth ? $window.innerWidth : (document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width);
+    var height = $window.innerHeight ? $window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height);
+
+    this.popup.left = ((width / 2) - (this.popup.width / 2)) + dualScreenLeft;
+    this.popup.top = ((height / 2) - (this.popup.height / 2)) + dualScreenTop;
+  },
+
+  /**
+   * Set component aliases for buttons and links.
+   */
+  components: {
+    'network': SocialSharingNetwork
+  }
+};
+
+SocialSharing.version = '2.3.4';
+
+SocialSharing.install = function (Vue) {
+  Vue.component('social-sharing', SocialSharing);
+};
+
+if (typeof window !== 'undefined') {
+  window.SocialSharing = SocialSharing;
+}
+
+module.exports = SocialSharing;
+
+/***/ }),
+
 /***/ "./node_modules/vue/dist/vue.common.js":
 /*!*********************************************!*\
   !*** ./node_modules/vue/dist/vue.common.js ***!
@@ -80503,6 +80887,10 @@ function getRandomInt(max) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+var SocialSharing = __webpack_require__(/*! vue-social-sharing */ "./node_modules/vue-social-sharing/dist/vue-social-sharing.common.js");
+
+Vue.use(SocialSharing);
 Vue.component('Username', __webpack_require__(/*! ./components/Username.vue */ "./resources/js/components/Username.vue").default);
 Vue.component('Claims', __webpack_require__(/*! ./components/Claims.vue */ "./resources/js/components/Claims.vue").default);
 Vue.component('Canva', __webpack_require__(/*! ./components/Canvas.vue */ "./resources/js/components/Canvas.vue").default);

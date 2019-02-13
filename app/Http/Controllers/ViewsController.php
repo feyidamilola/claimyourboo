@@ -100,7 +100,7 @@ class ViewsController extends Controller
         ]);
 
         if($saved){
-            return response()->json(['success' => true , 'id' => $saved->id , 'number' => $number]);
+            return response()->json(['success' => true , 'id' => $saved->id , 'number' => $number , 'image' => 'bg2.jpg' ]);
         }
 
         return response()->json(['success' => false ] );

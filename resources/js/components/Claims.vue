@@ -251,7 +251,7 @@ export default {
         .post("/submit", form)
         .then(response => {
           console.log(response.data);
-          window.location.href = "http://localhost:8000/response/" +response.data.id+"/" + response.data.number;
+          window.location.href = "http://localhost:8000/response/" +response.data.id+"/" + response.data.number +"/"+response.data.image;
         })
         .catch(error => console.log(error));
     }

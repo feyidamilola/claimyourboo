@@ -21,11 +21,13 @@ Route::post('/status', 'ViewsController@homepage');
 
 Route::post('/submit' , 'ViewsController@store');
 
-Route::get('/response/{id}/{number}' , function($id , $number){
+Route::get('/response/{id}/{number}/{image}' , function($id , $number , $image){
     $details = Claim::where('id' , $id)->first();
-    return view('response' , compact(['details' , 'number']));
+    return view('response' , compact(['details' , 'number' , 'image']));
 });
 
 Route::get('/thanks' , function(){
     return view('thankyou');
 });
+
+// Share::twitter(route('show', 1), 'boy', 'http://localhost:8000/img/bg2.jpg');
