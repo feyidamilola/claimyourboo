@@ -26,28 +26,14 @@ export default {
     canvas.selection = false;
 
     let imageUrl = 'http://localhost:8000/img/res.jpg';
-    
+
     fabric.Image.fromURL(imageUrl, function(myImg) {
  //i create an extra var for to change some image properties
  var img1 = myImg.set({ left: 0, top: 0 ,width:600,height:600});
  canvas.add(img1);
- canvas.sendToBack(img1); 
+ canvas.sendToBack(img1);
 });
 
-    // let res = new fabric.IText("hello".toUpperCase(), {
-    //   left: 0,
-    //   bottom: 0,
-    //   //   angle: 0,
-    //   fill: "#000",
-    //   scaleX: 1,
-    //   scaleY: 1,
-    //   fontWeight: "",
-    //   width: 300,
-    //   zIndex: 7
-    //   //   textAlign: "center",
-    //   //   originY : 'bottom'
-    // });
-    // canvas.add(res);
 
 
     let textString = `${this.no} people have claimed your boo as husband`;
@@ -98,10 +84,10 @@ export default {
     // canvas.centerObject(text);
 
     let widthscrencan = (window.innerWidth > 0) ? window.innerWidth : screen.width; // capture width screen onload
-let canvasScale = 1; //global  
+let canvasScale = 1; //global
 
-      if (widthscrencan <=360){ 
- 
+      if (widthscrencan <=360){
+
   function zoomIn() {
 	  var SCALE_FACTOR = .37;
       let canvasScale = canvasScale * SCALE_FACTOR;
@@ -128,21 +114,21 @@ let canvasScale = 1; //global
 
           objects[i].setCoords();
       }
-  
-     
+
+
       canvas.renderAll();
-	  
-	 
+
+
   }
-  
+
    window.onload = zoomIn;
  }
- 
-  
 
 
-   if ((widthscrencan >=361) || (widthscrencan ==768)){ 
-		
+
+
+   if ((widthscrencan >=361) || (widthscrencan ==768)){
+
 			function zoomIn768() {
 		  var SCALE_FACTOR = .45;
 		  canvasScale = canvasScale * SCALE_FACTOR;
@@ -169,18 +155,18 @@ let canvasScale = 1; //global
 
 			  objects[i].setCoords();
 		  }
-	  
-		 
+
+
 		  canvas.renderAll();
-		  
-		
-			
+
+
+
 		}
 		  window.onload = zoomIn768;
 	}
- 
-   if ((widthscrencan >=769) || (widthscrencan ==992)){ 
-		
+
+   if ((widthscrencan >=769) || (widthscrencan ==992)){
+
 			function zoomIn992() {
 		  var SCALE_FACTOR = .5;
 		  canvasScale = canvasScale * SCALE_FACTOR;
@@ -207,18 +193,18 @@ let canvasScale = 1; //global
 
 			  objects[i].setCoords();
 		  }
-	  
-		 
+
+
 		  canvas.renderAll();
-		
-		
-			
+
+
+
 		}
 		  window.onload = zoomIn992;
 	}
-	
-	  if ((widthscrencan >=993) || (widthscrencan ==1200)){ 
-		
+
+	  if ((widthscrencan >=993) || (widthscrencan ==1200)){
+
 			function zoomIn1200() {
 		  var SCALE_FACTOR = 1;
 		  canvasScale = canvasScale * SCALE_FACTOR;
@@ -245,19 +231,19 @@ let canvasScale = 1; //global
 
 			  objects[i].setCoords();
 		  }
-	  
-		 
+
+
 		  canvas.renderAll();
-		 
-		
-			
+
+
+
 		}
 		  window.onload = zoomIn1200;
 	}
- 
- 
-	  if (widthscrencan >=1300){ 
-		
+
+
+	  if (widthscrencan >=1300){
+
 			function zoomIn1300() {
 		  var SCALE_FACTOR = 1;
 		  canvasScale = canvasScale * SCALE_FACTOR;
@@ -284,16 +270,16 @@ let canvasScale = 1; //global
 
 			  objects[i].setCoords();
 		  }
-	  
-		 
+
+
 		  canvas.renderAll();
-		
-		
-			
+
+
+
 		}
 		  window.onload = zoomIn1300;
 	}
- 
+
 
  widthscrencan.onload
   }
